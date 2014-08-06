@@ -7,32 +7,10 @@ import java.util.Set;
 /**
  * Created by Dmytro on 8/4/2014.
  */
-public class User {
-    private int id;
+public class User extends AbstractDocument {
     private UserType userType;
     private String login;
     private String password;
-    private Set<Order> orders = new HashSet<Order>();
-
-    public User(int id, UserType userType, String login, String password) {
-        this.id = id;
-        this.userType = userType;
-        this.login = login;
-        this.password = password;
-    }
-
-    public void addOrder(Order order) {
-        this.orders.add(order);
-        order.setUser(this);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public UserType getUserType() {
         return userType;
@@ -58,14 +36,6 @@ public class User {
         this.password = password;
     }
 
-    public Set<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -73,9 +43,7 @@ public class User {
 
         User user = (User) o;
 
-        if (id != user.id) return false;
         if (!login.equals(user.login)) return false;
-        if (orders != null ? !orders.equals(user.orders) : user.orders != null) return false;
         if (!password.equals(user.password)) return false;
         if (userType != user.userType) return false;
 
@@ -84,11 +52,9 @@ public class User {
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + userType.hashCode();
+        int result = userType.hashCode();
         result = 31 * result + login.hashCode();
         result = 31 * result + password.hashCode();
-        result = 31 * result + (orders != null ? orders.hashCode() : 0);
         return result;
     }
 }
