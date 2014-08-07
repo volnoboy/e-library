@@ -1,12 +1,18 @@
 package com.library.model;
 
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Date;
 
 /**
  * Created by Dmytro on 8/4/2014.
  */
+@Document
 public class Order extends AbstractDocument {
+    @DBRef
     private User user;
+    @DBRef
     private Book book;
     private Status status;
     private Date startDate;

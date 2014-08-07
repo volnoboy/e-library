@@ -1,5 +1,7 @@
 package com.library.model;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -7,7 +9,8 @@ import java.util.Set;
 /**
  * Created by Dmytro on 8/4/2014.
  */
-public class Book {
+@Document
+public class Book extends AbstractDocument {
     private Set<Author> authors;
     private Publisher publisher;
     private String title;

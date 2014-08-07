@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "authors")
-public class Author extends AbstractDocument {
+@Document
+public class Author{
     private String firstName;
     private String lastName;
 

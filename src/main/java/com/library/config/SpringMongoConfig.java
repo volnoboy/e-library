@@ -50,17 +50,17 @@ import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
  * Spring MongoDB configuration file
  *
  */
-@Configuration
+//@Configuration
 public class SpringMongoConfig{
 
-    public @Bean
-    MongoTemplate mongoTemplate() throws Exception {
-
-        MongoTemplate mongoTemplate =
-                new MongoTemplate(new MongoClient("127.0.0.1", 27017),"names");
-        System.out.println("testtesttest");
-        return mongoTemplate;
-
-    }
+//    public @Bean
+//    MongoTemplate mongoTemplate() throws Exception {
+//
+//        MongoTemplate mongoTemplate =
+//                new MongoTemplate(new MongoClient("127.0.0.1", 27017),"names");
+//        System.out.println("testtesttest");
+//        return mongoTemplate;
+//
+//    }
 
 }
