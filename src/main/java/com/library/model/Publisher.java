@@ -7,7 +7,7 @@ import java.util.Set;
 /**
  * Created by Dmytro on 8/4/2014.
  */
-public class Publisher extends AbstractDocument{
+public class Publisher{
     private String name;
 
     public String getName() {
