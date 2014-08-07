@@ -2,8 +2,9 @@ package com.library.model;
 
 import java.util.HashSet;
 import java.util.Set;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-// do we need to implement Serializable interface again?
+@Document(collection = "authors")
 public class Author extends AbstractDocument {
     private String firstName;
     private String lastName;
