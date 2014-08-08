@@ -25,7 +25,7 @@ import java.util.List;
 public class ApplicationConfig/* extends AbstractMongoConfiguration*/ {
     public static void main(String[] args) {
         // For XML
-        ApplicationContext ctx = new GenericXmlApplicationContext("META_INF/spring/application-context.xml");
+        ApplicationContext ctx = new GenericXmlApplicationContext("application-context.xml");
 
         // For Annotation
 //        ApplicationContext ctx =
