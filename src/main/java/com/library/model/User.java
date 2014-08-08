@@ -60,4 +60,13 @@ public class User extends AbstractDocument {
         result = 31 * result + password.hashCode();
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userType=" + userType +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

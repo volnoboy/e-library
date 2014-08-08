@@ -83,4 +83,15 @@ public class Order extends AbstractDocument {
         result = 31 * result + endDate.hashCode();
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "user=" + user +
+                ", book=" + book +
+                ", status=" + status +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                '}';
+    }
 }

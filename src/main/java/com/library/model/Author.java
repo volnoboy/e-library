@@ -44,4 +44,12 @@ public class Author{
         result = 31 * result + lastName.hashCode();
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 }

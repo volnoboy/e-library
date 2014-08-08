@@ -71,4 +71,14 @@ public class Book extends AbstractDocument {
         result = 31 * result + ISBN.hashCode();
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "authors=" + authors +
+                ", publisher=" + publisher +
+                ", title='" + title + '\'' +
+                ", ISBN='" + ISBN + '\'' +
+                '}';
+    }
 }
