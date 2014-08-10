@@ -1,66 +1,87 @@
 package com.library.config;
 
 import com.library.model.Author;
-import com.mongodb.Mongo;
-import com.mongodb.MongoClient;
-import com.mongodb.WriteConcern;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import com.mongodb.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.GenericXmlApplicationContext;
-import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
+import org.springframework.context.annotation.*;
+import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
  * Created by Dmytro on 8/7/2014.
  */
-//@Configuration
+@Configuration
+@ComponentScan(basePackages = "com.library")
 //@EnableAutoConfiguration
-//@ComponentScan
-public class ApplicationConfig/* extends AbstractMongoConfiguration*/ {
-    public static void main(String[] args) {
-        // For XML
-        ApplicationContext ctx = new GenericXmlApplicationContext("application-context.xml");
+//@EnableMongoRepositories
+@Import(PropertyPlaceholderConfig.class)
+public class ApplicationConfig {
+    @Value("${mongo.db}")
+    private String mongoDatabase;
+    @Value("${mongo.host}")
+    private String mongoHostname;
+    @Value("${mongo.port}")
+    private String mongoPort;
+    @Value("${mongo.username}")
+    private String username;
+    @Value("${mongo.password}")
+    private String password;
 
-        // For Annotation
+
+//    public static void main(String[] args) {
+//        // For XML
+////        ApplicationContext ctx = new GenericXmlApplicationContext("application-context.xml");
+//
+//        // For Annotation
 //        ApplicationContext ctx =
 //                new AnnotationConfigApplicationContext(ApplicationConfig.class);
-        MongoOperations mongoOperation = (MongoOperations) ctx.getBean("mongoTemplate");
-
+//        MongoOperations mongoOperation = (MongoOperations) ctx.getBean("mongoTemplate");
 //
-//        ApplicationContext ctx = new GenericXmlApplicationContext("application-context.xml");
-//        MongoOperations mongoOperation = (MongoOperations)ctx.getBean("mongoTemplate");
+////
+////        ApplicationContext ctx = new GenericXmlApplicationContext("application-context.xml");
+////        MongoOperations mongoOperation = (MongoOperations)ctx.getBean("mongoTemplate");
+//
+//
+//        Author author = new Author();
+//        author.setFirstName("test");
+//        author.setLastName("test");
+//
+//        // save
+//        mongoOperation.save(author);
+//
+//        List<Author> authors = mongoOperation.findAll(Author.class);
+//        System.out.println(author);
+//
+//        // now user object got the created id.
+//        System.out.println("1. author : " + author);
+//    }
 
-        Author author = new Author();
-        author.setFirstName("Robert");
-        author.setLastName("Slave");
 
-        // save
-        mongoOperation.save(author);
+    public
+    @Bean
+    MongoDbFactory mongoDbFactory() throws Exception {
+        MongoCredential credential = MongoCredential.createMongoCRCredential(username, mongoDatabase, password.toCharArray());
+        MongoClient mongo = new MongoClient(new ServerAddress(mongoHostname, Integer.parseInt(mongoPort)), Arrays.asList(credential));
+        return new SimpleMongoDbFactory(mongo, mongoDatabase);
 
-        List<Author> authors = mongoOperation.findAll(Author.class);
-        System.out.println(author);
-
-        // now user object got the created id.
-        System.out.println("1. author : " + author);
     }
 
-//    @Override
-//    protected String getDatabaseName() {
-//        return "library ";
-//    }
-//
-//    @Override
-//    public Mongo mongo() throws Exception {
-//        MongoClient client = new MongoClient("127.0.0.1:27017");
-//        client.setWriteConcern(WriteConcern.SAFE);
-//        return client;
-//    }
+    public
+    @Bean
+    MongoTemplate mongoTemplate() throws Exception {
+
+        MongoTemplate mongoTemplate = new MongoTemplate(mongoDbFactory());
+        mongoTemplate.setWriteConcern(WriteConcern.SAFE);
+
+        return mongoTemplate;
+
+    }
 
 
 }

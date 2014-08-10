@@ -1,11 +1,9 @@
 package com.library.model;
 
-import java.util.HashSet;
-import java.util.Set;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class Author{
+public class Author extends AbstractDocument {
     private String firstName;
     private String lastName;
 

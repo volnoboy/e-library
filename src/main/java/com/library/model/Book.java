@@ -2,8 +2,6 @@ package com.library.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 /**

@@ -1,11 +1,13 @@
 package com.library.model;
 
-import java.io.Serializable;
 import org.springframework.data.annotation.Id;
+
+import java.io.Serializable;
 
 /**
  * Created by Dmytro on 8/6/2014.
  */
+//TODO: docs
 public abstract class AbstractDocument implements Serializable {
 
     // what access-modifier for serialVersionUID we need to set? private would be enough?

@@ -2,10 +2,6 @@ package com.library.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.math.BigInteger;
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * Created by Dmytro on 8/4/2014.
  */
