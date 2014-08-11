@@ -25,7 +25,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 //// Customers
         DBCollection authors = database.getCollection("author");
         authors.drop();
-        DBObject dave = new BasicDBObject("firstname", "Dave");
+        DBObject dave = new BasicDBObject();
         dave.put("firstname", "Matthew");
         dave.put("lastname", "McConnel");
         authors.insert(dave);
