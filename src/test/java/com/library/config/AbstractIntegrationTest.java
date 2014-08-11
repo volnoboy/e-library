@@ -2,6 +2,7 @@ package com.library.config;
 
 import com.mongodb.*;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -13,28 +14,21 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {ApplicationConfig.class})
-abstract public class AbstractIntegrationTest {
+/*abstract*/ public class AbstractIntegrationTest {
 
     @Autowired
     MongoTemplate mongo;
 
-    @Before
+    @Test
     public void setUp() {
         DB database = mongo.getDb();
 //// Customers
-//        DBCollection authors = database.getCollection("author");
-//        authors.remove(new BasicDBObject());
-//        BasicDBObject address = new BasicDBObject();
-//        address.put("Alex", "Pushkin");
-//        address.put("Alexey", "Tolstoi");
-//        address.put("country", "United States");
-//        BasicDBList addresses = new BasicDBList();
-//        addresses.add(address);
-//        DBObject dave = new BasicDBObject("firstname", "Dave");
-//        dave.put("lastname", "Matthews");
-//        dave.put("email", "dave@dmband.com");
-//        dave.put("addresses", addresses);
-//        authors.insert(dave);
+        DBCollection authors = database.getCollection("author");
+        authors.drop();
+        DBObject dave = new BasicDBObject("firstname", "Dave");
+        dave.put("firstname", "Matthew");
+        dave.put("lastname", "McConnel");
+        authors.insert(dave);
 //// Products
 //        DBCollection products = database.getCollection("product");
 //        products.drop();
