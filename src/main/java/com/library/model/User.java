@@ -11,7 +11,16 @@ public class User extends AbstractDocument {
     private String login;
     private String password;
 
-    public UserType getUserType() {
+	public User(UserType userType, String login, String password) {
+		this.userType = userType;
+		this.login = login;
+		this.password = password;
+	}
+
+	public User() {
+	}
+
+	public UserType getUserType() {
         return userType;
     }
 

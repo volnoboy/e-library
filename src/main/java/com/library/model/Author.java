@@ -7,7 +7,15 @@ public class Author extends AbstractDocument {
     private String firstName;
     private String lastName;
 
-    public String getFirstName() {
+	public Author(String firstName, String lastName) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+
+	public Author() {
+	}
+
+	public String getFirstName() {
         return firstName;
     }
 

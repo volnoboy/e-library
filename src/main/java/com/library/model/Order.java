@@ -18,7 +18,18 @@ public class Order extends AbstractDocument {
     private Date startDate;
     private Date endDate;
 
-    public User getUser() {
+	public Order(User user, Book book, Status status, Date startDate, Date endDate) {
+		this.user = user;
+		this.book = book;
+		this.status = status;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
+
+	public Order() {
+	}
+
+	public User getUser() {
         return user;
     }
 

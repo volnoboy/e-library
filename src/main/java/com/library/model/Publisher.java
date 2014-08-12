@@ -1,5 +1,7 @@
 package com.library.model;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -7,10 +9,18 @@ import java.util.Set;
 /**
  * Created by Dmytro on 8/4/2014.
  */
+@Document
 public class Publisher extends AbstractDocument{
     private String name;
 
-    public String getName() {
+	public Publisher(String name) {
+		this.name = name;
+	}
+
+	public Publisher() {
+	}
+
+	public String getName() {
         return name;
     }
 
