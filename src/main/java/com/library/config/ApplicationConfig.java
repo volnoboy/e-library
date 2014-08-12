@@ -33,36 +33,6 @@ public class ApplicationConfig {
     @Value("${mongo.password}")
     private String password;
 
-
-//    public static void main(String[] args) {
-//        // For XML
-////        ApplicationContext ctx = new GenericXmlApplicationContext("application-context.xml");
-//
-//        // For Annotation
-//        ApplicationContext ctx =
-//                new AnnotationConfigApplicationContext(ApplicationConfig.class);
-//        MongoOperations mongoOperation = (MongoOperations) ctx.getBean("mongoTemplate");
-//
-////
-////        ApplicationContext ctx = new GenericXmlApplicationContext("application-context.xml");
-////        MongoOperations mongoOperation = (MongoOperations)ctx.getBean("mongoTemplate");
-//
-//
-//        Author author = new Author();
-//        author.setFirstName("test");
-//        author.setLastName("test");
-//
-//        // save
-//        mongoOperation.save(author);
-//
-//        List<Author> authors = mongoOperation.findAll(Author.class);
-//        System.out.println(author);
-//
-//        // now user object got the created id.
-//        System.out.println("1. author : " + author);
-//    }
-
-
     public
     @Bean
     MongoDbFactory mongoDbFactory() throws Exception {

@@ -10,7 +10,6 @@ import java.io.Serializable;
 //TODO: docs
 public abstract class AbstractDocument implements Serializable {
 
-    // what access-modifier for serialVersionUID we need to set? private would be enough?
     protected static final long serialVersionUID = -425963247051905484L;
     @Id
     protected String objectId;
