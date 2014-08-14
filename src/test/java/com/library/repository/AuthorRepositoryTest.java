@@ -11,9 +11,14 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.springframework.data.mongodb.core.query.Criteria.where;
+import static org.springframework.data.mongodb.core.query.Query.query;
 
 /**
  * Created by Dmytro on 14.08.2014.
@@ -46,4 +51,14 @@ public class AuthorRepositoryTest {
         assertEquals(author.get(0).getLastname(), "Shakespeare");
         assertEquals(author.get(0).getFirtname(), "William");
     }
+
+    @Test
+    public void testInsert() {
+        Author author = mongoTemplate.findOne(query(where("firstname").is("William")), Author.class);
+        assertEquals(author.getFirtname(), "William");
+//        assertThat(mongoOps.findById(BigInteger.valueOf(6), City.class).getName(), equalTo("Chicago"));
+    }
+
+
+
 }
