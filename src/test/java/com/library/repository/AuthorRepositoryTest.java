@@ -28,7 +28,7 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 public class AuthorRepositoryTest {
 
     @Autowired
-    private AuthorRepository authorRepo;
+    private AuthorRepository authorRepository;
 
     @Autowired
     private MongoTestData testData;
@@ -42,11 +42,11 @@ public class AuthorRepositoryTest {
 
     @Test
     public void testFindByName() {
-        List<Author> author = authorRepo.findByFirstname("William");
+        List<Author> author = authorRepository.findByFirstname("William");
         assertEquals(author.size(), 1);
         assertEquals(author.get(0).getLastname(), "Shakespeare");
         assertEquals(author.get(0).getFirtname(), "William");
-        author = authorRepo.findByLastname("Shakespeare");
+        author = authorRepository.findByLastname("Shakespeare");
         assertEquals(author.size(), 1);
         assertEquals(author.get(0).getLastname(), "Shakespeare");
         assertEquals(author.get(0).getFirtname(), "William");
@@ -58,7 +58,5 @@ public class AuthorRepositoryTest {
         assertEquals(author.getFirtname(), "William");
 //        assertThat(mongoOps.findById(BigInteger.valueOf(6), City.class).getName(), equalTo("Chicago"));
     }
-
-
 
 }
