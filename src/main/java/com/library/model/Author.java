@@ -1,21 +1,22 @@
 package com.library.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.repository.CrudRepository;
 
 @Document
 public class Author extends AbstractDocument {
     private String firstName;
     private String lastName;
 
-	public Author(String firstName, String lastName) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-	}
+    public Author(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
-	public Author() {
-	}
+    public Author() {
+    }
 
-	public String getFirstName() {
+    public String getFirstName() {
         return firstName;
     }
 
@@ -37,7 +38,6 @@ public class Author extends AbstractDocument {
         if (o == null || getClass() != o.getClass()) return false;
 
         Author author = (Author) o;
-
         if (!firstName.equals(author.firstName)) return false;
         if (!lastName.equals(author.lastName)) return false;
 
