@@ -1,35 +1,34 @@
 package com.library.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.repository.CrudRepository;
 
 @Document
 public class Author extends AbstractDocument {
-    private String firstName;
-    private String lastName;
+    private String firtname;
+    private String lastname;
 
-    public Author(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Author(String firtname, String lastname) {
+        this.firtname = firtname;
+        this.lastname = lastname;
     }
 
     public Author() {
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirtname() {
+        return firtname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirtname(String firtname) {
+        this.firtname = firtname;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     @Override
@@ -38,24 +37,24 @@ public class Author extends AbstractDocument {
         if (o == null || getClass() != o.getClass()) return false;
 
         Author author = (Author) o;
-        if (!firstName.equals(author.firstName)) return false;
-        if (!lastName.equals(author.lastName)) return false;
+        if (!firtname.equals(author.firtname)) return false;
+        if (!lastname.equals(author.lastname)) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = firstName.hashCode();
-        result = 31 * result + lastName.hashCode();
+        int result = firtname.hashCode();
+        result = 31 * result + lastname.hashCode();
         return result;
     }
 
     @Override
     public String toString() {
         return "Author{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                "firtname='" + firtname + '\'' +
+                ", lastname='" + lastname + '\'' +
                 '}';
     }
 }

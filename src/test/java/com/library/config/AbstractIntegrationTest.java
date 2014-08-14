@@ -57,9 +57,9 @@ public class AbstractIntegrationTest {
 	@Test
 	public void AuthorTest() {
 		Assert.assertEquals(1, mongo.findAll(Author.class).size());
-		Assert.assertEquals("McConnel", mongo.find(new Query(Criteria.where("firstName").is("Matthew")), Author.class).get(0).getLastName());
+		Assert.assertEquals("McConnel", mongo.find(new Query(Criteria.where("firstName").is("Matthew")), Author.class).get(0).getLastname());
 		mongo.updateFirst(new Query(Criteria.where("firstName").is("Matthew")), Update.update("lastName", "Vasia"), Author.class);
-		Assert.assertEquals("Vasia", mongo.find(new Query(Criteria.where("firstName").is("Matthew")), Author.class).get(0).getLastName());
+		Assert.assertEquals("Vasia", mongo.find(new Query(Criteria.where("firstName").is("Matthew")), Author.class).get(0).getLastname());
 		mongo.findAndRemove(new Query(Criteria.where("lastName").is("Vasia")), Author.class);
 		Assert.assertEquals(0, mongo.findAll(Author.class).size());
 	}
@@ -92,7 +92,7 @@ public class AbstractIntegrationTest {
 		Assert.assertEquals("978-5", mongo.find(new Query(Criteria.where("title").is("autobiography")), Book.class).get(0).getISBN());
 		Assert.assertEquals("autobiography", mongo.find(new Query(Criteria.where("ISBN").is("978-5")), Book.class).get(0).getTitle());
 		Assert.assertEquals(1, mongo.find(new Query(Criteria.where("ISBN").is("978-5")), Book.class).get(0).getAuthors().size());
-		Assert.assertEquals("McConnel", mongo.find(new Query(Criteria.where("ISBN").is("978-5")), Book.class).get(0).getAuthors().iterator().next().getLastName());
+		Assert.assertEquals("McConnel", mongo.find(new Query(Criteria.where("ISBN").is("978-5")), Book.class).get(0).getAuthors().iterator().next().getLastname());
 		set.add(new Author("David", "Flenagan"));
 		mongo.updateFirst(new Query(Criteria.where("ISBN").is("978-5")), Update.update("authors", set), Book.class);
 		Assert.assertEquals(2, mongo.find(new Query(Criteria.where("ISBN").is("978-5")), Book.class).get(0).getAuthors().size());
@@ -106,7 +106,7 @@ public class AbstractIntegrationTest {
 		Assert.assertEquals(user, mongo.find(new Query(Criteria.where("status").is(Status.ACTIVE)), Order.class).get(0).getUser());
 		Assert.assertEquals(book, mongo.find(new Query(Criteria.where("user").is(user)), Order.class).get(0).getBook());
 		Assert.assertEquals(1, mongo.find(new Query(Criteria.where("user").is(user)), Order.class).get(0).getBook().getAuthors().size());
-		Assert.assertEquals("McConnel", mongo.find(new Query(Criteria.where("user").is(user)), Order.class).get(0).getBook().getAuthors().iterator().next().getLastName());
+		Assert.assertEquals("McConnel", mongo.find(new Query(Criteria.where("user").is(user)), Order.class).get(0).getBook().getAuthors().iterator().next().getLastname());
 		mongo.updateFirst(new Query(Criteria.where("user").is(user)), Update.update("status", Status.IN_STOCK), Order.class);
 		Assert.assertEquals(Status.IN_STOCK, mongo.find(new Query(Criteria.where("user").is(user)), Order.class).get(0).getStatus());
 		mongo.findAndRemove(new Query(Criteria.where("status").is("IN_STOCK")), Order.class);
