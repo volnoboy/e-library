@@ -11,8 +11,6 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.math.BigInteger;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -45,17 +43,17 @@ public class AuthorRepositoryTest {
         List<Author> author = authorRepository.findByFirstname("William");
         assertEquals(author.size(), 1);
         assertEquals(author.get(0).getLastname(), "Shakespeare");
-        assertEquals(author.get(0).getFirtname(), "William");
+        assertEquals(author.get(0).getFirstname(), "William");
         author = authorRepository.findByLastname("Shakespeare");
         assertEquals(author.size(), 1);
         assertEquals(author.get(0).getLastname(), "Shakespeare");
-        assertEquals(author.get(0).getFirtname(), "William");
+        assertEquals(author.get(0).getFirstname(), "William");
     }
 
     @Test
-    public void testInsert() {
+    public void testSelect() {
         Author author = mongoTemplate.findOne(query(where("firstname").is("William")), Author.class);
-        assertEquals(author.getFirtname(), "William");
+        assertEquals(author.getFirstname(), "William");
 //        assertThat(mongoOps.findById(BigInteger.valueOf(6), City.class).getName(), equalTo("Chicago"));
     }
 
