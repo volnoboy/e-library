@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by Dmytro on 14.08.2014.
  */
-//@Repository
+@Repository
 public interface AuthorRepository extends PagingAndSortingRepository<Author, String> {
     List<Author> findByLastname(String lastname);
 
