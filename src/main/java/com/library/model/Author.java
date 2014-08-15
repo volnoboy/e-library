@@ -4,23 +4,23 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class Author extends AbstractDocument {
-    private String firtname;
+    private String firstname;
     private String lastname;
 
-    public Author(String firtname, String lastname) {
-        this.firtname = firtname;
+    public Author(String firstname, String lastname) {
+        this.firstname = firstname;
         this.lastname = lastname;
     }
 
     public Author() {
     }
 
-    public String getFirtname() {
-        return firtname;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirtname(String firtname) {
-        this.firtname = firtname;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public String getLastname() {
@@ -37,7 +37,7 @@ public class Author extends AbstractDocument {
         if (o == null || getClass() != o.getClass()) return false;
 
         Author author = (Author) o;
-        if (!firtname.equals(author.firtname)) return false;
+        if (!firstname.equals(author.firstname)) return false;
         if (!lastname.equals(author.lastname)) return false;
 
         return true;
@@ -45,7 +45,7 @@ public class Author extends AbstractDocument {
 
     @Override
     public int hashCode() {
-        int result = firtname.hashCode();
+        int result = firstname.hashCode();
         result = 31 * result + lastname.hashCode();
         return result;
     }
@@ -53,7 +53,7 @@ public class Author extends AbstractDocument {
     @Override
     public String toString() {
         return "Author{" +
-                "firtname='" + firtname + '\'' +
+                "firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 '}';
     }

@@ -20,7 +20,7 @@ import java.util.Arrays;
 @Configuration
 @ComponentScan(basePackages = "com.library")
 //@EnableAutoConfiguration
-@EnableMongoRepositories(basePackageClasses = RepositoryPackage.class)
+@EnableMongoRepositories(basePackages = "com.library.repository")
 @Import(MongoConfig.class)
 public class ApplicationConfig {
 
