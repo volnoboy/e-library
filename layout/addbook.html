@@ -1,0 +1,136 @@
+<!doctype html>
+
+<html>
+  
+  <head>
+    <title>e-library</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <style type="text/css">
+      body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #eee;
+      }
+         
+      .form-signin {
+        max-width: 330px;
+        padding: 15px;
+        margin: 0 auto;
+      }
+      .form-signin .form-signin-heading,
+      .form-signin .checkbox {
+        margin-bottom: 10px;
+      }
+      .form-signin .checkbox {
+        font-weight: normal;
+      }
+      .form-signin .form-control {
+        position: relative;
+        font-size: 16px;
+        height: auto;
+        padding: 10px;
+        -webkit-box-sizing: border-box;
+           -moz-box-sizing: border-box;
+                box-sizing: border-box;
+      }
+      .form-signin .form-control:focus {
+        z-index: 2;
+      }
+      .form-signin input[type="text"] {
+        margin-bottom: 10px;
+      }
+      .form-signin input[type="password"] {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">e-library</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+           <li>
+              <a href="index.html">Home</a>
+            </li>
+            <li>
+              <a href="list_of_books.html">List of books</a>
+            </li>
+            <li class="active">
+              <a href="addbook.html">Add Book</a>
+            </li>
+            <li>
+              <a href="order.html">Order</a>
+            </li>
+            <!--li>
+              <a href="#contact">Contact</a>
+            </li-->
+            <!--li class="dropdown"-->
+              <!--a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="#">Action</a>
+                </li>
+                <li>
+                  <a href="#">Another action</a>
+                </li>
+                <li>
+                  <a href="#">Something else here</a>
+                </li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li>
+                  <a href="#">Separated link</a>
+                </li>
+                <li>
+                  <a href="#">One more separated link</a>
+                </li>
+              </ul!-->
+            <!--/li-->
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <li><a href="signup.html">Sign up</a></li>
+              <li><a href="signin.html">Sign in</a></li>
+          </ul>
+          <!--form class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" placeholder="Email" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form>
+          <div-->
+            
+          <!--/div class=""navbar-form navbar-right"-->
+
+        </div>
+        <!--/.navbar-collapse -->
+      </div>
+    </div>
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="container">
+
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Add new book</h2>
+        <input type="text" class="form-control" placeholder="Title">
+        <input type="text" class="form-control" placeholder="ISBN">
+        <input type="text" class="form-control" placeholder="Authors">
+        <input type="text" class="form-control" placeholder="Publisher">
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Add book</button>
+      </form>
+
+    </div>
+  </body>
+
