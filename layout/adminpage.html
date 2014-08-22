@@ -28,13 +28,13 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active">
+            <li>
               <a href="index.html">Home</a>
             </li>
             <li>
               <a href="userpage.html">Userpage</a>
             </li>
-            <li>
+            <li class="active">
               <a href="adminpage.html">Adminpage</a>
             </li>
             <li>
@@ -65,36 +65,72 @@
     <div class="jumbotron">
       <div class="container">
         <!-- Example row of columns -->
-        <form class="row">
-          <div class="row-lg-4">
-            <label class="checkbox">
-              <input type="checkbox" id="inlineCheckbox1" value="option1">
-               <h3>Effective Java (2nd Edition) by Joshua Bloch</h3>
-            </label>
-            <p>Are you looking for a deeper understanding of the Java™ programming language so that you can write code that is clearer, more correct, more robust, and more reusable? Look no further! Effective Java™, Second Edition, brings together seventy-eight indispensable programmer’s rules of thumb: working, best-practice solutions for the programming challenges you encounter every day.
-</p>
-            <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-          </div>
-          <div class="row-lg-4">
-            <label class="checkbox">
-              <input type="checkbox" id="inlineCheckbox2" value="option2">
-               <h3>Head First Java (2nd Edition) by Kathy Sierra and Bert Bates</h3>
-            </label>
-            <p>Learning a complex new language is no easy task especially when it s an object-oriented computer programming language like Java. You might think the problem is your brain. It seems to have a mind of its own, a mind that doesn't always want to take in the dry, technical stuff you're forced to study.
-</p>
-            <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-          </div>
-          <div class="row-lg-4">
-            <label class="checkbox">
-              <input type="checkbox" id="inlineCheckbox3" value="option3">
-               <h3>Thinking in Java (4th Edition) by Bruce Eckel</h3>
-            </label>
-            <p>“Thinking in Java should be read cover to cover by every Java programmer, then kept close at hand for frequent reference. The exercises are challenging, and the chapter on Collections is superb! Not only did this book help me to pass the Sun Certified Java Programmer exam; it’s also the first book I turn to whenever I have a Java question.”
-—Jim Pleger, Loudoun County (Virginia) Government</p>
-            <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-          </div>
-          <button type="submit" class="btn btn-lg btn-primary">Order</button>
-        </form>
+        <table class="table">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>ISDN</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Status</th>
+                <th>Close</th>
+            </tr>
+        </thead>
+        <tbody>
+        	<tr class="success">
+        	      <td>Alex</td>
+                <td>EJB 3 Developer Guide</td>
+                <td>Michael Sicor</td>
+                <td>041-95-56</td>
+                <td>13.08</td>
+                <td>23.08</td>
+                <td>Active</td>
+                <td><button type="submit" class="btn">Book returned</button></td>
+            </tr>
+            <tr class="success">
+                <td>Alex</td>
+                <td>Data Structures and the Java Collections Framework</td>
+                <td>William J. Collins</td>
+                <td>178-56-87</td>
+                <td>15.08</td>
+                <td>25.08</td>
+                <td>Active</td>
+                <td><button type="submit" class="btn">Book returned</button></td>
+            </tr>
+            <tr class="danger">
+                <td>Andrew</td>
+                <td>Data Structures and the Java Collections Framework</td>
+                <td>William J. Collins</td>
+                <td>178-56-87</td>
+                <td>10.08</td>
+                <td>20.08</td>
+                <td>Overdue</td>
+                <td><button type="submit" class="btn">Book returned</button></td>
+            </tr>
+            <tr class="warning">
+                <td>Kirill</td>
+                <td>Data Structures and the Java Collections Framework</td>
+                <td>William J. Collins</td>
+                <td>178-56-87</td>
+                <td></td>
+                <td></td>
+                <td>Expectation of delivery</td>
+                <td></td>
+            </tr>
+            <tr class="active">
+                <td>Sergey</td>
+                <td>Data Structures and the Java Collections Framework</td>
+                <td>William J. Collins</td>
+                <td>178-56-87</td>
+                <td></td>
+                <td></td>
+                <td>Request</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
         <hr>
         <footer>
           <p>&copy; Softserve 2014</p>
