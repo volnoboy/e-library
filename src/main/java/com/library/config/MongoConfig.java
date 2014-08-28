@@ -12,11 +12,13 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 import java.util.Arrays;
 
 @Configuration
 @PropertySource("classpath:mongo.properties")
+@EnableMongoRepositories(basePackages = ApplicationConfig.BASE_PACKAGE)
 public class MongoConfig {
 
     @Value("${mongo.db}")
@@ -33,8 +35,11 @@ public class MongoConfig {
     public
     @Bean
     MongoDbFactory mongoDbFactory() throws Exception {
-        MongoCredential credential = MongoCredential.createMongoCRCredential(username, mongoDatabase, password.toCharArray());
-        MongoClient mongo = new MongoClient(new ServerAddress(mongoHostname, Integer.parseInt(mongoPort)), Arrays.asList(credential));
+        MongoCredential credential = MongoCredential
+                .createMongoCRCredential(username, mongoDatabase, password.toCharArray());
+        MongoClient mongo = new MongoClient(
+                new ServerAddress(mongoHostname, Integer.parseInt(mongoPort)),
+                Arrays.asList(credential));
         return new SimpleMongoDbFactory(mongo, mongoDatabase);
 
     }
@@ -42,12 +47,10 @@ public class MongoConfig {
     public
     @Bean
     MongoTemplate mongoTemplate() throws Exception {
-
         MongoTemplate mongoTemplate = new MongoTemplate(mongoDbFactory());
         mongoTemplate.setWriteConcern(WriteConcern.SAFE);
 
         return mongoTemplate;
-
     }
 
 
@@ -55,5 +58,4 @@ public class MongoConfig {
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
     }
-
 }

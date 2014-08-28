@@ -1,12 +1,14 @@
 buildscript {
     repositories {
-        maven { url "http://repo.spring.io/libs-release" }
         mavenLocal()
         mavenCentral()
+        mavenCentral()
+        maven { url "http://repo.spring.io/snapshot" }
+        maven { url "http://repo.spring.io/milestone" }
+
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.4.RELEASE")
-//        classpath("org.springframework.data:spring-data-jpa:1.6.2.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.5.RELEASE")
     }
 }
 
@@ -17,22 +19,33 @@ apply plugin: 'spring-boot'
 
 jar {
     baseName = 'e-library'
-    version =  '0.1'
+    version = '0.1'
 }
 
 repositories {
     mavenLocal()
     mavenCentral()
+    mavenCentral()
+    maven { url "http://repo.spring.io/snapshot" }
+    maven { url "http://repo.spring.io/milestone" }
+
 }
 
 dependencies {
-//    compile("org.springframework.data:spring-data-jpa:1.6.2.RELEASE")
-    compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.springframework.data:spring-data-jpa:1.6.2.RELEASE")
-    compile("org.springframework.data:spring-data-mongodb:1.5.2.RELEASE")
-    compile("org.mongodb:mongo-java-driver:2.12.3")
-    compile("org.springframework:spring-test:4.0.6.RELEASE")
-    testCompile("junit:junit")
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.data:spring-data-mongodb'
+
+    compile 'org.mongodb:mongo-java-driver'
+    compile 'javax.servlet:jstl'
+
+//    runtime 'javax.servlet:javax.servlet-api'
+//    runtime 'javax.servlet.jsp:jsp-api:2.2'
+//    runtime 'org.apache.tomcat.embed:tomcat-embed-core'
+    runtime 'org.apache.tomcat.embed:tomcat-embed-jasper'
+
+    testCompile 'junit:junit'
+    testCompile 'org.mockito:mockito-all'
+    testCompile 'org.springframework:spring-test'
 }
 
 task wrapper(type: Wrapper) {
