@@ -13,14 +13,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/book")
 public class BookController {
 
-    @RequestMapping(value = "/save", method = RequestMethod.GET)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(ModelMap model) {
         model.addAttribute("message", "Button was pressed");
         return "hello";
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String hello() {
-        return "hello";
+    public String hello(ModelMap model) {
+		model.addAttribute("message", "AddBook page was pressed");
+		return "hello";
     }
+
+
 }
