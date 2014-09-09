@@ -38,6 +38,8 @@ dependencies {
     compile 'org.mongodb:mongo-java-driver'
     compile 'javax.servlet:jstl'
 
+    compile 'org.apache.tiles:tiles-extras:3.0.4'
+
 //    runtime 'javax.servlet:javax.servlet-api'
 //    runtime 'javax.servlet.jsp:jsp-api:2.2'
 //    runtime 'org.apache.tomcat.embed:tomcat-embed-core'
