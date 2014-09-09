@@ -47,7 +47,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 
         String[] definitions = new String[] {
                 "/WEB-INF/layouts/layouts.xml",
-                "/WEB-INF/views/**/views.xml" /*Scans directories for Tiles configurations */
+                "/WEB-INF/views/views.xml" /*Scans directories for Tiles configurations */
         };
 
         TilesConfigurer tilesConfigurer = new TilesConfigurer();
