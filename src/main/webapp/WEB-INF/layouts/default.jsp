@@ -19,7 +19,7 @@
 </head>
 <body>
 <div id="menu"><tiles:insertAttribute name="menu"/></div>
-<%--<div id="body"><tiles:insertAttribute name="body"/></div>--%>
+<div id="body"><tiles:insertAttribute name="body"/></div>
 <div id="footer"><tiles:insertAttribute name="footer"/></div>
 </body>
 </html>
