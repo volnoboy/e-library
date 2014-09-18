@@ -6,15 +6,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * Created by alitvin on 8/22/2014.
+ * Created by alitvin on 9/18/2014.
  */
-@Controller()
-@RequestMapping("/userPage")
-public class UserController {
+@Controller
+@RequestMapping("/adminPage")
+public class AdminController {
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String userInfo(ModelMap modelMap) {
-		modelMap.addAttribute("message", "Page was selected");
-		return "userPage";
+	public String admin(ModelMap model) {
+		model.addAttribute("message", "AddBook page was pressed");
+		return "adminPage";
 	}
 }
