@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd"> 
+<tiles-definitions>
+
+	<definition name="baseLayout" template="/WEB-INF/jsp/layout/layout.jsp">
+		<put-attribute name="title" value="Spring 3 MVC &amp; Apache Tiles 2" />
+		<put-attribute name="header" value="/WEB-INF/jsp/layout/header.jsp" />
+		<put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/WEB-INF/jsp/layout/footer.jsp" />
+	</definition>
+
+	<definition name="addBook" extends="baseLayout">
+		<put-attribute name="title" value="/WEB-INF/jsp/layout/commonHead.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/addBook.jsp" />
+	</definition>
+
+    <definition name="adminPage" extends="baseLayout">
+        <put-attribute name="title" value="/WEB-INF/jsp/layout/commonHead.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/adminPage.jsp" />
+    </definition>
+
+    <definition name="index" extends="baseLayout">
+        <put-attribute name="title" value="/WEB-INF/jsp/layout/commonHead.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/index.jsp" />
+    </definition>
+
+    <definition name="userPage" extends="baseLayout">
+        <put-attribute name="title" value="/WEB-INF/jsp/layout/commonHead.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/userPage.jsp" />
+    </definition>
+
+    <definition name="signIn" extends="baseLayout">
+        <put-attribute name="title" value="/WEB-INF/jsp/layout/commonHead.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/signIn.jsp" />
+    </definition>
+
+    <definition name="signOut" extends="baseLayout">
+        <put-attribute name="title" value="/WEB-INF/jsp/layout/commonHead.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/signOut.jsp" />
+    </definition>
+
+</tiles-definitions>
