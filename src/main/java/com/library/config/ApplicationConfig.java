@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Import;
 @Configuration
 @ComponentScan(ApplicationConfig.BASE_PACKAGE)
 @EnableAutoConfiguration
-@Import({MongoConfig.class, MvcConfig.class})
+@Import({MongoConfig.class, MvcConfig.class, TilesConfig.class})
 public class ApplicationConfig {
     static final String BASE_PACKAGE = "com.library";
 }
