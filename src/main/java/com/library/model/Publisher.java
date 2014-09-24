@@ -47,8 +47,6 @@ public class Publisher extends AbstractDocument{
 
     @Override
     public String toString() {
-        return "Publisher{" +
-                "name='" + name + '\'' +
-                '}';
+        return name;
     }
 }

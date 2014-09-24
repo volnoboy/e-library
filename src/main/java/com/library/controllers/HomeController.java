@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/index")
 public class HomeController {
+	public static Integer page =0;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String home(ModelMap model) {

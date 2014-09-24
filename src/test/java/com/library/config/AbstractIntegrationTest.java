@@ -89,7 +89,7 @@ public class AbstractIntegrationTest {
 	@Test
 	public void BookTest() {
 		Assert.assertEquals(1, mongo.findAll(Book.class).size());
-		Assert.assertEquals("978-5", mongo.find(new Query(Criteria.where("title").is("autobiography")), Book.class).get(0).getISBN());
+		Assert.assertEquals("978-5", mongo.find(new Query(Criteria.where("title").is("autobiography")), Book.class).get(0).getIsbn());
 		Assert.assertEquals("autobiography", mongo.find(new Query(Criteria.where("ISBN").is("978-5")), Book.class).get(0).getTitle());
 		Assert.assertEquals(1, mongo.find(new Query(Criteria.where("ISBN").is("978-5")), Book.class).get(0).getAuthors().size());
 		Assert.assertEquals("McConnel", mongo.find(new Query(Criteria.where("ISBN").is("978-5")), Book.class).get(0).getAuthors().iterator().next().getLastname());

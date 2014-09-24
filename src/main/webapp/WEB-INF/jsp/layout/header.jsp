@@ -21,9 +21,9 @@
                     <a href="/book">Add Book</a>
                 </li>
                 <li>
-                    <form class="navbar-form navbar-right">
+                    <form class="navbar-form navbar-right" action="/book/find" method="get">
                         <div class="form-group">
-                            <input type="text" placeholder class="form-control">
+                            <input type="text" name="name" placeholder class="form-control">
                         </div>
                         <button type="submit" class="btn btn-success">Find book</button>
                     </form>

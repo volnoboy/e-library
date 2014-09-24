@@ -40,12 +40,64 @@
     .form-signin input[type="password"] {
         margin-bottom: 10px;
     }
-    .right {
+    .foot {
         text-align: right;
         margin-bottom: 1px;
         text-shadow: 1px 1px 2px black, 0 0 1em red;
         color: #ff560d;
         font-size: 1em;
+        position: fixed;
+        left: 45%;
+        bottom: 2%;
+    }
+    .bordered {
+        text-align: center;
+        font-size: 36px;
+        position: fixed;
+        left: 45%;
+        top: 25%;
+    }
+    ul{border:0; margin:0; padding:0;}
+
+    #pagination-flickr li{
+        border:0; margin:0; padding:0;
+        font-size:11px;
+        list-style:none;
+    }
+    #pagination-flickr a{
+        border:solid 1px #DDDDDD;
+        margin-right:2px;
+    }
+    #pagination-flickr .previous-off,
+    #pagination-flickr .next-off {
+        color:#666666;
+        display:block;
+        float:left;
+        font-weight:bold;
+        padding:3px 4px;
+    }
+    #pagination-flickr .next a,
+    #pagination-flickr .previous a {
+        font-weight:bold;
+        border:solid 1px #FFFFFF;
+    }
+    #pagination-flickr .active{
+        color:#ff0084;
+        font-weight:bold;
+        display:block;
+        float:left;
+        padding:4px 6px;
+    }
+    #pagination-flickr a:link,
+    #pagination-flickr a:visited {
+        color:#0063e3;
+        display:block;
+        float:left;
+        padding:3px 6px;
+        text-decoration:none;
+    }
+    #pagination-flickr a:hover{
+        border:solid 1px #666666;
     }
 
 </style>

@@ -14,4 +14,6 @@ public interface AuthorRepository extends PagingAndSortingRepository<Author, Str
     List<Author> findByLastname(String lastname);
 
     List<Author> findByFirstname(String firstname);
+
+	List<Author> findByFirstnameOrLastname(String firstname,String lastname);
 }

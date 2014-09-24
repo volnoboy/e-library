@@ -52,9 +52,6 @@ public class Author extends AbstractDocument {
 
     @Override
     public String toString() {
-        return "Author{" +
-                "firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                '}';
+        return firstname+" "+ lastname;
     }
 }

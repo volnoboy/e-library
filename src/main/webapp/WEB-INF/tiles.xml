@@ -39,4 +39,9 @@
         <put-attribute name="body" value="/WEB-INF/jsp/signOut.jsp" />
     </definition>
 
+    <definition name="bookInfo" extends="baseLayout">
+        <put-attribute name="title" value="/WEB-INF/jsp/layout/commonHead.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/bookInfo.jsp" />
+    </definition>
+
 </tiles-definitions>

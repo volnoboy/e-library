@@ -11,11 +11,11 @@ import java.util.Set;
 @Document
 public class Book extends AbstractDocument {
 	@DBRef
-    private Set<Author> authors;
+	private Set<Author> authors;
 	@DBRef
-    private Publisher publisher;
-    private String title;
-    private String ISBN;
+	private Publisher   publisher;
+	private String      title;
+	private String      isbn;
 
 	public Book() {
 	}
@@ -24,12 +24,12 @@ public class Book extends AbstractDocument {
 		this.authors = authors;
 		this.publisher = publisher;
 		this.title = title;
-		this.ISBN = ISBN;
+		this.isbn = ISBN;
 	}
 
 	public Set<Author> getAuthors() {
-        return authors;
-    }
+		return authors;
+	}
 
     public void setAuthors(Set<Author> authors) {
         this.authors = authors;
@@ -51,12 +51,12 @@ public class Book extends AbstractDocument {
         this.title = title;
     }
 
-    public String getISBN() {
-        return ISBN;
+    public String getIsbn() {
+        return isbn;
     }
 
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     @Override
@@ -66,7 +66,7 @@ public class Book extends AbstractDocument {
 
         Book book = (Book) o;
 
-        if (!ISBN.equals(book.ISBN)) return false;
+        if (!isbn.equals(book.isbn)) return false;
         if (!authors.equals(book.authors)) return false;
         if (!publisher.equals(book.publisher)) return false;
         if (!title.equals(book.title)) return false;
@@ -79,7 +79,7 @@ public class Book extends AbstractDocument {
         int result = authors.hashCode();
         result = 31 * result + publisher.hashCode();
         result = 31 * result + title.hashCode();
-        result = 31 * result + ISBN.hashCode();
+        result = 31 * result + isbn.hashCode();
         return result;
     }
 
@@ -89,7 +89,7 @@ public class Book extends AbstractDocument {
                 "authors=" + authors +
                 ", publisher=" + publisher +
                 ", title='" + title + '\'' +
-                ", ISBN='" + ISBN + '\'' +
+                ", isbn='" + isbn + '\'' +
                 '}';
     }
 }
