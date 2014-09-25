@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/index")
 public class HomeController {
 	public static Integer page =0;
+	public static Integer pageMax =0;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String home(ModelMap model) {

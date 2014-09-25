@@ -53,9 +53,6 @@
     .bordered {
         text-align: center;
         font-size: 36px;
-        position: fixed;
-        left: 45%;
-        top: 25%;
     }
     ul{border:0; margin:0; padding:0;}
 
@@ -98,6 +95,13 @@
     }
     #pagination-flickr a:hover{
         border:solid 1px #666666;
+    }
+    .name{
+        text-align:center;
+    }
+    .jumbotron{
+        position:relative;
+        left:15%;
     }
 
 </style>

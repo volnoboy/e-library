@@ -1,5 +1,6 @@
 package com.library.model;
 
+import com.library.SetAuthors;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,16 +12,16 @@ import java.util.Set;
 @Document
 public class Book extends AbstractDocument {
 	@DBRef
-	private Set<Author> authors;
+	private SetAuthors<Author> authors;
 	@DBRef
-	private Publisher   publisher;
-	private String      title;
-	private String      isbn;
+	private Publisher          publisher;
+	private String             title;
+	private String             isbn;
 
 	public Book() {
 	}
 
-	public Book(Set<Author> authors, Publisher publisher, String title, String ISBN) {
+	public Book(SetAuthors<Author> authors, Publisher publisher, String title, String ISBN) {
 		this.authors = authors;
 		this.publisher = publisher;
 		this.title = title;
@@ -31,8 +32,8 @@ public class Book extends AbstractDocument {
 		return authors;
 	}
 
-    public void setAuthors(Set<Author> authors) {
-        this.authors = authors;
+	public void setAuthors(SetAuthors<Author> authors) {
+		this.authors = authors;
     }
 
     public Publisher getPublisher() {

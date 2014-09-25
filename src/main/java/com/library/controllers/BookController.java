@@ -1,5 +1,6 @@
 package com.library.controllers;
 
+import com.library.SetAuthors;
 import com.library.model.Author;
 import com.library.model.Book;
 import com.library.model.Publisher;
@@ -19,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashSet;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
@@ -38,15 +38,20 @@ public class BookController {
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(HttpServletRequest request, ModelMap model) {
-		Author author = new Author(request.getParameter("authors"), "q");
+		String paramAuthors= request.getParameter("authors");
+		SetAuthors<Author> set = new SetAuthors<Author>();
+		String[] authors = paramAuthors.split(";");
+		for (int i=0; i<authors.length; i++) {
+			set.add(new Author(authors[i].split(" ")[0], authors[i].split(" ").length==2?authors[i].split(" ")[1]:""));
+		}
 		Publisher p = new Publisher(request.getParameter("publisher"));
-		HashSet<Author> set = new HashSet<Author>();
-		set.add(author);
 		Book book = new Book(set, p, request.getParameter("title"), request.getParameter("isbn"));
 		model.addAttribute("state", "Book was in database");
 		if (mongoTemplate.findOne(query(where("isbn").is(request.getParameter("isbn"))), Book.class) == null) {
 			publisherRepository.save(p);
-			authorRepository.save(author);
+			for (Author a:set) {
+				authorRepository.save(a);
+			}
 			bookRepository.save(book);
 			model.addAttribute("state", "Book was added");
 		}
@@ -66,9 +71,9 @@ public class BookController {
 		} else {
 			HomeController.page = 0;
 		}
-		ModelAndView modelAndView = new ModelAndView();
-		Page<Book> books = bookRepository.findByTitleOrIsbn(name, name, new PageRequest(HomeController.page, 3));
-		modelAndView.setViewName("index");
+		ModelAndView modelAndView = new ModelAndView("index");
+		Page<Book> books = bookRepository.findByTitleOrIsbn(name, name, new PageRequest(HomeController.page, 1));
+		HomeController.pageMax=books.getTotalPages();
 		modelAndView.addObject("book", books.getContent());
 		modelAndView.addObject("pageNext", "/book/find?name=" + name + "&page=" + (HomeController.page + 1));
 		modelAndView.addObject("pagePrev", "/book/find?name=" + name + "&page=" + (HomeController.page - 1));
@@ -77,8 +82,7 @@ public class BookController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ModelAndView info(@PathVariable String id) {
-		ModelAndView model = new ModelAndView();
-		model.setViewName("bookInfo");
+		ModelAndView model = new ModelAndView("bookInfo");
 		if (bookRepository.exists(id)) {
 			model.addObject("state", "Book found in database");
 			model.addObject("book", bookRepository.findOne(id));

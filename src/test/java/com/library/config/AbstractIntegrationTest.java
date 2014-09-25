@@ -1,5 +1,6 @@
 package com.library.config;
 
+import com.library.SetAuthors;
 import com.library.model.*;
 import com.mongodb.DB;
 import org.junit.After;
@@ -28,7 +29,7 @@ public class AbstractIntegrationTest {
 
 	@Autowired
 	private MongoTemplate mongo;
-	private Set<Author> set = new HashSet<Author>();
+	private SetAuthors<Author> set = new SetAuthors<Author>();
 	private Book book;
 	private User user;
 

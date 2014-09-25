@@ -2,6 +2,9 @@ package com.library.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.HashSet;
+import java.util.Iterator;
+
 @Document
 public class Author extends AbstractDocument {
     private String firstname;
@@ -54,4 +57,6 @@ public class Author extends AbstractDocument {
     public String toString() {
         return firstname+" "+ lastname;
     }
+
+
 }

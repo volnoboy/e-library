@@ -4,6 +4,7 @@
         <p>${book.title} by  ${book.authors}</p>
     <p>${state}</p></h1>
 </div>
+<br>
 <div class="bordered">
     <p> <strong>1.Author:</strong>   ${book.authors}</p>
     <p> <strong>2.Title:</strong>   ${book.title} </p>
