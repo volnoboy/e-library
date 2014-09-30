@@ -13,17 +13,20 @@
 
 </div>
 <script type="text/javascript">
+     var author = {};
+    author['firstname'] = document.getElementById("authors").value;
+    author['lastname'] = document.getElementById("authors").value;
+
+    var book = {};
+    book['title'] = document.getElementById("title").value;
+    book['isbn'] = document.getElementById("isbn").value;
+    book['authors'] = [author];
+    book['publisher'] = document.getElementById("publisher").value;
     function getData() {
         $.ajax({
             url: '/book/save',
             type: 'POST',
-            data:  {
-                title:document.getElementById("title").value,
-                isbn:document.getElementById("isbn").value,
-                firstname :document.getElementById("authors").value.split(';')[0],
-                lastname:document.getElementById("authors").value.split(';')[1],
-                publisher:document.getElementById("publisher").value
-            }
+            data: book
         });
     }
 </script>

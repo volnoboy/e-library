@@ -29,7 +29,7 @@ public class AbstractIntegrationTest {
 
 	@Autowired
 	private MongoTemplate mongo;
-	private SetAuthors<Author> set = new SetAuthors<Author>();
+	private Set<Author> set = new HashSet<Author>();
 	private Book book;
 	private User user;
 

@@ -12,7 +12,7 @@ import java.util.Set;
 @Document
 public class Book extends AbstractDocument {
 	@DBRef
-	private SetAuthors<Author> authors;
+	private Set<Author> authors;
 	@DBRef
 	private Publisher          publisher;
 	private String             title;
@@ -21,7 +21,7 @@ public class Book extends AbstractDocument {
 	public Book() {
 	}
 
-	public Book(SetAuthors<Author> authors, Publisher publisher, String title, String ISBN) {
+	public Book(Set<Author> authors, Publisher publisher, String title, String ISBN) {
 		this.authors = authors;
 		this.publisher = publisher;
 		this.title = title;
@@ -32,7 +32,7 @@ public class Book extends AbstractDocument {
 		return authors;
 	}
 
-	public void setAuthors(SetAuthors<Author> authors) {
+	public void setAuthors(Set<Author> authors) {
 		this.authors = authors;
     }
 

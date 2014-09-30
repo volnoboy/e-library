@@ -18,6 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
 
@@ -33,28 +37,25 @@ public class BookController {
 	@Autowired private BookRepository      bookRepository;
 	@Autowired private MongoTemplate       mongoTemplate;
 
+
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(HttpServletRequest request, ModelMap model, Book b, Author au) {
-		String paramAuthors= request.getParameter("authors");
-		SetAuthors<Author> set = new SetAuthors<Author>();
-		String[] authors = paramAuthors.split(";");
-		for (int i=0; i<authors.length; i++) {
-			set.add(new Author(authors[i].split(" ")[0], authors[i].split(" ").length==2?authors[i].split(" ")[1]:""));
+	public ModelAndView save(Book book) {
+		Collection<Author> authors = book.getAuthors();
+		if (authors == null || authors.isEmpty()) {
+			throw new IllegalArgumentException("Authors must not be empty");
 		}
-		Publisher p = new Publisher(request.getParameter("publisher"));
-		Book book = new Book(set, p, request.getParameter("title"), request.getParameter("isbn"));
-		model.addAttribute("state", "Book was in database");
-		if (mongoTemplate.findOne(query(where("isbn").is(request.getParameter("isbn"))), Book.class) == null) {
-			publisherRepository.save(p);
-			for (Author a:set) {
-				authorRepository.save(a);
-			}
-			bookRepository.save(book);
-			model.addAttribute("state", "Book was added");
+
+		final Set<Author> savedAuthors = new HashSet<Author>(authors.size());
+		for (Author author : authors) {
+			savedAuthors.add(authorRepository.save(author));
 		}
-		model.addAttribute("book", book);
-		return "bookInfo";
+
+		book.setAuthors(savedAuthors);
+		final Book savedBook = bookRepository.save(book);
+
+		return new ModelAndView("bookInfo", "book", savedBook);
 	}
+
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String getAddBook() {
