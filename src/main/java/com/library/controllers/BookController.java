@@ -13,10 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +34,7 @@ public class BookController {
 	@Autowired private MongoTemplate       mongoTemplate;
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(HttpServletRequest request, ModelMap model) {
+	public String save(HttpServletRequest request, ModelMap model, Book b, Author au) {
 		String paramAuthors= request.getParameter("authors");
 		SetAuthors<Author> set = new SetAuthors<Author>();
 		String[] authors = paramAuthors.split(";");
@@ -63,14 +60,14 @@ public class BookController {
 	public String getAddBook() {
 		return "addBook";
 	}
-
+//читать брукс
 	@RequestMapping(value = "/find", method = RequestMethod.GET)
-	public ModelAndView findBook(@RequestParam(value = "name", required = true) String name, @RequestParam(value = "page", required = false) String page) {
-		if (page != null) {
+	public ModelAndView findBook(@RequestParam(value = "name", required = true) String name, @RequestParam(value = "page", required = false) int page/*index*/) {
+		/*if (page != null) {
 			HomeController.page = Integer.parseInt(page);
 		} else {
 			HomeController.page = 0;
-		}
+		}*/
 		ModelAndView modelAndView = new ModelAndView("index");
 		Page<Book> books = bookRepository.findByTitleOrIsbn(name, name, new PageRequest(HomeController.page, 1));
 		HomeController.pageMax=books.getTotalPages();
