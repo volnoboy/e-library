@@ -1,16 +1,19 @@
 package com.library.controllers;
 
-import com.library.SetAuthors;
+
 import com.library.model.Author;
 import com.library.model.Book;
 import com.library.model.Publisher;
+import com.library.model.User;
 import com.library.repository.AuthorRepository;
 import com.library.repository.BookRepository;
 import com.library.repository.PublisherRepository;
+import com.sun.net.httpserver.HttpsParameters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -18,9 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
@@ -39,7 +40,7 @@ public class BookController {
 
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public ModelAndView save(Book book) {
+	public ModelAndView save(@RequestBody Book book) {
 		Collection<Author> authors = book.getAuthors();
 		if (authors == null || authors.isEmpty()) {
 			throw new IllegalArgumentException("Authors must not be empty");
@@ -61,7 +62,7 @@ public class BookController {
 	public String getAddBook() {
 		return "addBook";
 	}
-//читать брукс
+
 	@RequestMapping(value = "/find", method = RequestMethod.GET)
 	public ModelAndView findBook(@RequestParam(value = "name", required = true) String name, @RequestParam(value = "page", required = false) int page/*index*/) {
 		/*if (page != null) {

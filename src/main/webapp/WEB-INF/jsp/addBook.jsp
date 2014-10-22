@@ -13,20 +13,24 @@
 
 </div>
 <script type="text/javascript">
-     var author = {};
-    author['firstname'] = document.getElementById("authors").value;
-    author['lastname'] = document.getElementById("authors").value;
 
-    var book = {};
-    book['title'] = document.getElementById("title").value;
-    book['isbn'] = document.getElementById("isbn").value;
-    book['authors'] = [author];
-    book['publisher'] = document.getElementById("publisher").value;
     function getData() {
+        var author = {};
+        author['firstname'] = document.getElementById("authors").value;
+        author['lastname'] = document.getElementById("authors").value;
+
+        var book = {};
+        book['title'] = document.getElementById("title").value;
+        book['isbn'] = document.getElementById("isbn").value;
+        book['authors'] = [author];
+        book['publisher'] = document.getElementById("publisher").value;
+
+        console.log("Post book: " + JSON.stringify(book));
         $.ajax({
             url: '/book/save',
             type: 'POST',
             data: book
         });
+
     }
 </script>
