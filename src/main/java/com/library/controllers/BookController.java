@@ -37,10 +37,14 @@ public class BookController {
 	@Autowired private AuthorRepository    authorRepository;
 	@Autowired private BookRepository      bookRepository;
 	@Autowired private MongoTemplate       mongoTemplate;
-
+	@Autowired
+	private MongoTemplate mongo;
+	private Set<Author> set = new HashSet<Author>();
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public ModelAndView save(@RequestBody Book book) {
+	public ModelAndView save(BookDTO bookDTO) {
+
+		Book book= new Book();
 		Collection<Author> authors = book.getAuthors();
 		if (authors == null || authors.isEmpty()) {
 			throw new IllegalArgumentException("Authors must not be empty");
@@ -59,8 +63,11 @@ public class BookController {
 
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String getAddBook() {
-		return "addBook";
+	public ModelAndView getAddBook() {
+		ModelAndView model = new ModelAndView("addBook");
+		model.addObject("authors",authorRepository.findAll());
+		model.addObject("publishers",publisherRepository.findAll());
+		return model;
 	}
 
 	@RequestMapping(value = "/find", method = RequestMethod.GET)
@@ -92,3 +99,48 @@ public class BookController {
 	}
 
 }
+
+	class BookDTO {
+
+		private String authorId;
+		private String publisherId;
+		private String title;
+		private String isbn;
+
+		public String getAuthorId() {
+			return authorId;
+		}
+
+		public void setAuthorId(String authorId) {
+			this.authorId = authorId;
+		}
+
+		public String getPublisherId() {
+			return publisherId;
+		}
+
+		public void setPublisherId(String publisherId) {
+			this.publisherId = publisherId;
+		}
+
+		public String getTitle() {
+			return title;
+		}
+
+		public void setTitle(String title) {
+			this.title = title;
+		}
+
+		public String getIsbn() {
+			return isbn;
+		}
+
+		public void setIsbn(String isbn) {
+			this.isbn = isbn;
+		}
+
+	}
+//бук инфо
+//ид тайт сбн
+
+//дто

@@ -44,4 +44,14 @@
         <put-attribute name="body" value="/WEB-INF/jsp/bookInfo.jsp" />
     </definition>
 
+    <definition name="authorInfo" extends="baseLayout">
+        <put-attribute name="title" value="/WEB-INF/jsp/layout/commonHead.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/authorInfo.jsp" />
+    </definition>
+
+    <definition name="publisherInfo" extends="baseLayout">
+        <put-attribute name="title" value="/WEB-INF/jsp/layout/commonHead.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/publisherInfo.jsp" />
+    </definition>
+
 </tiles-definitions>
