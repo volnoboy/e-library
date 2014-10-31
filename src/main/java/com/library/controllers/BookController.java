@@ -36,18 +36,16 @@ public class BookController {
 	@Autowired private PublisherRepository publisherRepository;
 	@Autowired private AuthorRepository    authorRepository;
 	@Autowired private BookRepository      bookRepository;
-	@Autowired private MongoTemplate       mongoTemplate;
-	@Autowired
-	private MongoTemplate mongo;
-	private Set<Author> set = new HashSet<Author>();
 
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
+
+	@RequestMapping(value = "/save", method = RequestMethod.GET)
 	public ModelAndView save(BookDTO bookDTO) {
-        Publisher publisher = publisherRepository.findOne(bookDTO.getPublisherId());
-        Author author = authorRepository.findOne(bookDTO.getAuthorId());
+        final Publisher publisher = publisherRepository.findOne(bookDTO.getPublisherId());
         Set<Author> authorSet = new HashSet<>();
-        authorSet.add(author);
-		Book book= new Book(authorSet,publisher,bookDTO.getTitle(),bookDTO.getIsbn());
+        for (int i=0; i<bookDTO.getAuthorIds().length; i++){
+            authorSet.add(authorRepository.findOne(bookDTO.getAuthorIds()[i]));
+        }
+		final Book book= new Book(authorSet,publisher,bookDTO.getTitle(),bookDTO.getIsbn());
 		return new ModelAndView("bookInfo", "book", book);
 	}
 
@@ -92,17 +90,17 @@ public class BookController {
 
 	class BookDTO {
 
-		private String authorId;
+		private String[] authorIds;
 		private String publisherId;
 		private String title;
 		private String isbn;
 
-		public String getAuthorId() {
-			return authorId;
+		public String[] getAuthorIds() {
+			return authorIds;
 		}
 
-		public void setAuthorId(String authorId) {
-			this.authorId = authorId;
+		public void setAuthorIds(String[] authorIds) {
+			this.authorIds = authorIds;
 		}
 
 		public String getPublisherId() {

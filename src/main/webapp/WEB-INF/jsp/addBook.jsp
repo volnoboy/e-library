@@ -7,14 +7,14 @@
 
         <p><select name="authors" id="authors">
             <c:forEach var="a" items="${authors}">
-                <option>${a}</option>
+                <option value="${a.objectId}">${a}</option>
             </c:forEach>
         </select>
             <button type="submit" onclick="authorsInfo()"> Add Author</button>
 
         <p><select name="publishers" id="publishers">
             <c:forEach var="p" items="${publishers}">
-                <option >${p}</option>
+                <option value="${p.objectId}">${p.name}</option>
             </c:forEach>
 
         </select>
@@ -28,13 +28,15 @@
 <script type="text/javascript">
     function getData( ) {
         var bookDTO = {};
+        var authorIds= {};
         bookDTO['title'] = document.getElementById("title").value;
         bookDTO['isbn'] = document.getElementById("isbn").value;
-        bookDTO['authorId'] = "${authors}";
-        bookDTO['publisherId'] = "${publishers}";
+        authorIds =$('#authors').val();
+        bookDTO['authorIds'] = authorIds;
+        bookDTO['publisherId'] = $('#publishers').val();
         $.ajax({
             url: '/book/save',
-            type: 'POST',
+            type: 'GET',
             data: bookDTO
         });
     }
