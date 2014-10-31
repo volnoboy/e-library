@@ -36,7 +36,7 @@
         bookDTO['publisherId'] = $('#publishers').val();
         $.ajax({
             url: '/book/save',
-            type: 'GET',
+            type: 'POST',
             data: bookDTO
         });
     }

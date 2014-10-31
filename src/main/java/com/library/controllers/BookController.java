@@ -38,7 +38,7 @@ public class BookController {
 	@Autowired private BookRepository      bookRepository;
 
 
-	@RequestMapping(value = "/save", method = RequestMethod.GET)
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ModelAndView save(BookDTO bookDTO) {
         final Publisher publisher = publisherRepository.findOne(bookDTO.getPublisherId());
         Set<Author> authorSet = new HashSet<>();
