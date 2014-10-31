@@ -43,22 +43,12 @@ public class BookController {
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ModelAndView save(BookDTO bookDTO) {
-
-		Book book= new Book();
-		Collection<Author> authors = book.getAuthors();
-		if (authors == null || authors.isEmpty()) {
-			throw new IllegalArgumentException("Authors must not be empty");
-		}
-
-		final Set<Author> savedAuthors = new HashSet<Author>(authors.size());
-		for (Author author : authors) {
-			savedAuthors.add(authorRepository.save(author));
-		}
-
-		book.setAuthors(savedAuthors);
-		final Book savedBook = bookRepository.save(book);
-
-		return new ModelAndView("bookInfo", "book", savedBook);
+        Publisher publisher = publisherRepository.findOne(bookDTO.getPublisherId());
+        Author author = authorRepository.findOne(bookDTO.getAuthorId());
+        Set<Author> authorSet = new HashSet<>();
+        authorSet.add(author);
+		Book book= new Book(authorSet,publisher,bookDTO.getTitle(),bookDTO.getIsbn());
+		return new ModelAndView("bookInfo", "book", book);
 	}
 
 
@@ -140,7 +130,4 @@ public class BookController {
 		}
 
 	}
-//бук инфо
-//ид тайт сбн
 
-//дто
