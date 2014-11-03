@@ -20,6 +20,12 @@
                 <li >
                     <a href="/book">Add Book</a>
                 </li>
+                <li >
+                    <a href="/author">Add Author</a>
+                </li>
+                <li >
+                    <a href="/publisher">Add Publisher</a>
+                </li>
                 <li>
                     <form class="navbar-form navbar-right" action="/book/find" method="get">
                         <div class="form-group">

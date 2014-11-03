@@ -33,99 +33,102 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 @Controller
 @RequestMapping("/book")
 public class BookController {
-	@Autowired private PublisherRepository publisherRepository;
-	@Autowired private AuthorRepository    authorRepository;
-	@Autowired private BookRepository      bookRepository;
+    @Autowired
+    private PublisherRepository publisherRepository;
+    @Autowired
+    private AuthorRepository authorRepository;
+    @Autowired
+    private BookRepository bookRepository;
 
 
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public ModelAndView save(BookDTO bookDTO) {
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public ModelAndView save(BookDTO bookDTO) {
         final Publisher publisher = publisherRepository.findOne(bookDTO.getPublisherId());
         Set<Author> authorSet = new HashSet<>();
-        for (int i=0; i<bookDTO.getAuthorIds().length; i++){
+        for (int i = 0; i < bookDTO.getAuthorIds().length; i++) {
             authorSet.add(authorRepository.findOne(bookDTO.getAuthorIds()[i]));
         }
-		final Book book= new Book(authorSet,publisher,bookDTO.getTitle(),bookDTO.getIsbn());
-		return new ModelAndView("bookInfo", "book", book);
-	}
+        final Book book = new Book(authorSet, publisher, bookDTO.getTitle(), bookDTO.getIsbn());
+        return new ModelAndView("bookInfo", "book", book);
+    }
 
 
-	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView getAddBook() {
-		ModelAndView model = new ModelAndView("addBook");
-		model.addObject("authors",authorRepository.findAll());
-		model.addObject("publishers",publisherRepository.findAll());
-		return model;
-	}
+    @RequestMapping(method = RequestMethod.GET)
+    public ModelAndView getAddBook() {
+        ModelAndView model = new ModelAndView("addBook");
+        model.addObject("authors", authorRepository.findAll());
+        model.addObject("publishers", publisherRepository.findAll());
+        return model;
+    }
 
-	@RequestMapping(value = "/find", method = RequestMethod.GET)
-	public ModelAndView findBook(@RequestParam(value = "name", required = true) String name, @RequestParam(value = "page", required = false) int page/*index*/) {
-		/*if (page != null) {
+    @RequestMapping(value = "/find", method = RequestMethod.GET)
+    public ModelAndView findBook(@RequestParam(value = "name", required = true) String name, @RequestParam(value = "page", required = false) int page/*index*/) {
+        /*if (page != null) {
 			HomeController.page = Integer.parseInt(page);
 		} else {
 			HomeController.page = 0;
 		}*/
-		ModelAndView modelAndView = new ModelAndView("index");
-		Page<Book> books = bookRepository.findByTitleOrIsbn(name, name, new PageRequest(HomeController.page, 1));
-		HomeController.pageMax=books.getTotalPages();
-		modelAndView.addObject("book", books.getContent());
-		modelAndView.addObject("pageNext", "/book/find?name=" + name + "&page=" + (HomeController.page + 1));
-		modelAndView.addObject("pagePrev", "/book/find?name=" + name + "&page=" + (HomeController.page - 1));
-		return modelAndView;
-	}
+        ModelAndView modelAndView = new ModelAndView("index");
+        Page<Book> books = bookRepository.findByTitleOrIsbn(name, name, new PageRequest(HomeController.page, 1));
+        HomeController.pageMax = books.getTotalPages();
+        modelAndView.addObject("book", books.getContent());
+        modelAndView.addObject("pageNext", "/book/find?name=" + name + "&page=" + (HomeController.page + 1));
+        modelAndView.addObject("pagePrev", "/book/find?name=" + name + "&page=" + (HomeController.page - 1));
+        return modelAndView;
+    }
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ModelAndView info(@PathVariable String id) {
-		ModelAndView model = new ModelAndView("bookInfo");
-		if (bookRepository.exists(id)) {
-			model.addObject("state", "Book found in database");
-			model.addObject("book", bookRepository.findOne(id));
-		} else {
-			model.addObject("state", "Book was not in database");
-		}
-		return model;
-	}
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ModelAndView info(@PathVariable String id) {
+        ModelAndView model = new ModelAndView("bookInfo");
+        if (bookRepository.exists(id)) {
+            model.addObject("state", "Book found in database");
+            model.addObject("book", bookRepository.findOne(id));
+        } else {
+            model.addObject("state", "Book was not in database");
+        }
+        return model;
+    }
 
 }
 
-	class BookDTO {
+class BookDTO {
 
-		private String[] authorIds;
-		private String publisherId;
-		private String title;
-		private String isbn;
+    private String[] authorIds;
+    private String publisherId;
+    private String title;
+    private String isbn;
 
-		public String[] getAuthorIds() {
-			return authorIds;
-		}
+    public String[] getAuthorIds() {
+        return authorIds;
+    }
 
-		public void setAuthorIds(String[] authorIds) {
-			this.authorIds = authorIds;
-		}
+    public void setAuthorIds(String[] authorIds) {
+        this.authorIds = authorIds;
+    }
 
-		public String getPublisherId() {
-			return publisherId;
-		}
+    public String getPublisherId() {
+        return publisherId;
+    }
 
-		public void setPublisherId(String publisherId) {
-			this.publisherId = publisherId;
-		}
+    public void setPublisherId(String publisherId) {
+        this.publisherId = publisherId;
+    }
 
-		public String getTitle() {
-			return title;
-		}
+    public String getTitle() {
+        return title;
+    }
 
-		public void setTitle(String title) {
-			this.title = title;
-		}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-		public String getIsbn() {
-			return isbn;
-		}
+    public String getIsbn() {
+        return isbn;
+    }
 
-		public void setIsbn(String isbn) {
-			this.isbn = isbn;
-		}
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
 
-	}
+}
 

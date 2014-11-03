@@ -2,7 +2,7 @@
 <form class="form-signin" >
     <h2 class="form-signin-heading">Add new publisher</h2>
     <input type="text" id="name" name="name" class="form-control" placeholder="Name">
-    <button class="btn btn-lg btn-primary btn-block" type="submit"  onclick="save()">Add book</button>
+    <button class="btn btn-lg btn-primary btn-block" type="submit"  onclick="save()">Add publisher</button>
 </form>
 
 <div> <p> List of publishers</p>
