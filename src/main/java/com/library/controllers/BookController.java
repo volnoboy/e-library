@@ -40,19 +40,6 @@ public class BookController {
     @Autowired
     private BookRepository bookRepository;
 
-
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public ModelAndView save(BookDTO bookDTO) {
-        final Publisher publisher = publisherRepository.findOne(bookDTO.getPublisherId());
-        Set<Author> authorSet = new HashSet<>();
-        for (int i = 0; i < bookDTO.getAuthorIds().length; i++) {
-            authorSet.add(authorRepository.findOne(bookDTO.getAuthorIds()[i]));
-        }
-        final Book book = new Book(authorSet, publisher, bookDTO.getTitle(), bookDTO.getIsbn());
-        return new ModelAndView("bookInfo", "book", book);
-    }
-
-
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getAddBook() {
         ModelAndView model = new ModelAndView("addBook");
@@ -88,47 +75,7 @@ public class BookController {
         }
         return model;
     }
-
 }
 
-class BookDTO {
 
-    private String[] authorIds;
-    private String publisherId;
-    private String title;
-    private String isbn;
-
-    public String[] getAuthorIds() {
-        return authorIds;
-    }
-
-    public void setAuthorIds(String[] authorIds) {
-        this.authorIds = authorIds;
-    }
-
-    public String getPublisherId() {
-        return publisherId;
-    }
-
-    public void setPublisherId(String publisherId) {
-        this.publisherId = publisherId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-}
 

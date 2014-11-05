@@ -31,11 +31,11 @@
         bookDTO['authorIds'] = authorIds;
         bookDTO['publisherId'] = $('#publishers').val();
         $.ajax({
-            url: '/book/save',
+            url: '/bookRest/save',
             type: 'POST',
             data: bookDTO,
-            success: function(){
-                alert( "Book Saved ");
+            success: function(id){
+                document.location.href = "/book/"+id;
             }
         });
     }
